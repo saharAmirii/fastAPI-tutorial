@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 import random
 from typing import List
 from contextlib import asynccontextmanager
+from dataclasses import dataclass
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -31,7 +32,11 @@ name_list = [
 ]
 
 
-
+@dataclass
+class Student():
+    name : str
+    age : int
+    
 
 @app.get("/names/{name_id}")
 def retrieve_name_datail(name_id:int=Path(description="item id enter kon", alias="name_id")):
